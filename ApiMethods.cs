@@ -117,53 +117,53 @@ namespace ValorantTGBot
             }
         }
 
-        public async Task<List<MapsModel>> ShowFavouriteMaps()
-        {
-            var response = await _httpClient.GetAsync("/FavouritesMaps/FavMaps");
-            response.EnsureSuccessStatusCode();
+        //public async Task<List<MapsModel>> ShowFavouriteMaps()
+        //{
+        //    var response = await _httpClient.GetAsync("/FavouritesMaps/FavMaps");
+        //    response.EnsureSuccessStatusCode();
 
-            var content = response.Content.ReadAsStringAsync().Result;
+        //    var content = response.Content.ReadAsStringAsync().Result;
 
-            var result = JsonConvert.DeserializeObject<List<MapsModel>>(content);
+        //    var result = JsonConvert.DeserializeObject<List<MapsModel>>(content);
 
-            return result;
-        }
+        //    return result;
+        //}
 
-        public async Task<MapsModel> AddFavouriteMap(string mapName)
-        {
-            var response = await _httpClient.PostAsync($"/FavouritesMaps/AddFavMap?mapName={mapName}", null);
+        //public async Task<MapsModel> AddFavouriteMap(string mapName)
+        //{
+        //    var response = await _httpClient.PostAsync($"/FavouritesMaps/AddFavMap?mapName={mapName}", null);
 
-            if (response.StatusCode == HttpStatusCode.InternalServerError)
-            {
-                return null;
-            }
-            else
-            {
-                var content = response.Content.ReadAsStringAsync().Result;
+        //    if (response.StatusCode == HttpStatusCode.InternalServerError)
+        //    {
+        //        return null;
+        //    }
+        //    else
+        //    {
+        //        var content = response.Content.ReadAsStringAsync().Result;
 
-                var result = JsonConvert.DeserializeObject<MapsModel>(content);
+        //        var result = JsonConvert.DeserializeObject<MapsModel>(content);
 
-                return result;
-            }
-        }
+        //        return result;
+        //    }
+        //}
 
-        public async Task<MapsModel> DeleteFavouriteMap(string mapName)
-        {
-            var response = await _httpClient.DeleteAsync($"/FavouritesMaps/DeleteMap?mapName={mapName}");
+        //public async Task<MapsModel> DeleteFavouriteMap(string mapName)
+        //{
+        //    var response = await _httpClient.DeleteAsync($"/FavouritesMaps/DeleteMap?mapName={mapName}");
 
-            if (response.StatusCode == HttpStatusCode.InternalServerError)
-            {
-                return null;
-            }
-            else
-            {
-                var content = response.Content.ReadAsStringAsync().Result;
+        //    if (response.StatusCode == HttpStatusCode.InternalServerError)
+        //    {
+        //        return null;
+        //    }
+        //    else
+        //    {
+        //        var content = response.Content.ReadAsStringAsync().Result;
 
-                var result = JsonConvert.DeserializeObject<MapsModel>(content);
+        //        var result = JsonConvert.DeserializeObject<MapsModel>(content);
 
-                return result;
-            }
-        }
+        //        return result;
+        //    }
+        //}
 
         public async Task<string> GetNews()
         {
