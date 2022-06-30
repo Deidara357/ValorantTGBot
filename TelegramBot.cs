@@ -431,92 +431,92 @@ namespace ValorantTGBot
 
                 return;
             }
-            else if (message.Text == "Show Maps")
-            {
-                var result = _apiMethods.ShowFavouriteMaps().Result;
+            //else if (message.Text == "Show Maps")
+            //{
+            //    var result = _apiMethods.ShowFavouriteMaps().Result;
 
-                if (result.Count == 0)
-                {
-                    await botClient.SendTextMessageAsync(message.Chat.Id, "Ви ще не добавляли карт");
-                }
-                else
-                {
-                    for (int i = 0; i < result.Count; i++)
-                    {
-                        string agentInfo = $"Map Name: {result[i].MapName}\n";
+            //    if (result.Count == 0)
+            //    {
+            //        await botClient.SendTextMessageAsync(message.Chat.Id, "Ви ще не добавляли карт");
+            //    }
+            //    else
+            //    {
+            //        for (int i = 0; i < result.Count; i++)
+            //        {
+            //            string agentInfo = $"Map Name: {result[i].MapName}\n";
 
-                        await botClient.SendPhotoAsync(message.Chat.Id, photo: result[i].Photo, caption: agentInfo);
-                    }
-                }
+            //            await botClient.SendPhotoAsync(message.Chat.Id, photo: result[i].Photo, caption: agentInfo);
+            //        }
+            //    }
 
-                await botClient.SendTextMessageAsync(message.Chat.Id, "Меню /keyboard");
+            //    await botClient.SendTextMessageAsync(message.Chat.Id, "Меню /keyboard");
 
-                return;
-            }
-            else if (message.Text == "Add Map")
-            {
-                ReplyKeyboardMarkup replyKeyboardMarkup = MapsButtons();
+            //    return;
+            //}
+            //else if (message.Text == "Add Map")
+            //{
+            //    ReplyKeyboardMarkup replyKeyboardMarkup = MapsButtons();
 
-                await botClient.SendTextMessageAsync(message.Chat.Id, "Виберiть карту, яку хочете добавити\nМеню /keyboard",
-                    replyMarkup: replyKeyboardMarkup);
+            //    await botClient.SendTextMessageAsync(message.Chat.Id, "Виберiть карту, яку хочете добавити\nМеню /keyboard",
+            //        replyMarkup: replyKeyboardMarkup);
 
-                wantToAddMap = true;
+            //    wantToAddMap = true;
 
-                return;
-            }
-            else if (IsMapsButtonPressed(message) && wantToAddMap == true)
-            {
-                wantToAddMap = false;
+            //    return;
+            //}
+            //else if (IsMapsButtonPressed(message) && wantToAddMap == true)
+            //{
+            //    wantToAddMap = false;
 
-                var result = _apiMethods.AddFavouriteMap(message.Text).Result;
+            //    var result = _apiMethods.AddFavouriteMap(message.Text).Result;
 
-                var buttons = FavMapsButtons();
+            //    var buttons = FavMapsButtons();
 
-                if (result == null)
-                {
-                    await botClient.SendTextMessageAsync(message.Chat.Id, "Ця карта вже є в списку!\nМеню /keyboard",
-                        replyMarkup: buttons);
-                }
-                else
-                {
-                    await botClient.SendTextMessageAsync(message.Chat.Id, "Ви успiшно добавили карту в список!\nМеню /keyboard",
-                        replyMarkup: buttons);
-                }
+            //    if (result == null)
+            //    {
+            //        await botClient.SendTextMessageAsync(message.Chat.Id, "Ця карта вже є в списку!\nМеню /keyboard",
+            //            replyMarkup: buttons);
+            //    }
+            //    else
+            //    {
+            //        await botClient.SendTextMessageAsync(message.Chat.Id, "Ви успiшно добавили карту в список!\nМеню /keyboard",
+            //            replyMarkup: buttons);
+            //    }
 
-                return;
-            }
-            else if (message.Text == "Delete Map")
-            {
-                ReplyKeyboardMarkup replyKeyboardMarkup = MapsButtons();
+            //    return;
+            //}
+            //else if (message.Text == "Delete Map")
+            //{
+            //    ReplyKeyboardMarkup replyKeyboardMarkup = MapsButtons();
 
-                await botClient.SendTextMessageAsync(message.Chat.Id, "Виберiть карту, яку хочете видалити\nМеню /keyboard",
-                    replyMarkup: replyKeyboardMarkup);
+            //    await botClient.SendTextMessageAsync(message.Chat.Id, "Виберiть карту, яку хочете видалити\nМеню /keyboard",
+            //        replyMarkup: replyKeyboardMarkup);
 
-                wantToDeleteMap = true;
+            //    wantToDeleteMap = true;
 
-                return;
-            }
-            else if (IsMapsButtonPressed(message) && wantToDeleteMap == true)
-            {
-                wantToDeleteMap = false;
+            //    return;
+            //}
+            //else if (IsMapsButtonPressed(message) && wantToDeleteMap == true)
+            //{
+            //    wantToDeleteMap = false;
 
-                var result = _apiMethods.DeleteFavouriteMap(message.Text).Result;
+            //    var result = _apiMethods.DeleteFavouriteMap(message.Text).Result;
 
-                var buttons = FavMapsButtons();
+            //    var buttons = FavMapsButtons();
 
-                if (result == null)
-                {
-                    await botClient.SendTextMessageAsync(message.Chat.Id, "Цiєї карти немає в списку!\nМеню /keyboard",
-                        replyMarkup: buttons);
-                }
-                else
-                {
-                    await botClient.SendTextMessageAsync(message.Chat.Id, "Ви успiшно видалили карту із списку!\nМеню /keyboard",
-                        replyMarkup: buttons);
-                }
+            //    if (result == null)
+            //    {
+            //        await botClient.SendTextMessageAsync(message.Chat.Id, "Цiєї карти немає в списку!\nМеню /keyboard",
+            //            replyMarkup: buttons);
+            //    }
+            //    else
+            //    {
+            //        await botClient.SendTextMessageAsync(message.Chat.Id, "Ви успiшно видалили карту із списку!\nМеню /keyboard",
+            //            replyMarkup: buttons);
+            //    }
 
-                return;
-            }
+            //    return;
+            //}
             else if (message.Text == "News")
             {
                 var result = _apiMethods.GetNews().Result;
